@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.2"
 
   spec.add_dependency "activesupport", ">= 4.2"
+  spec.add_dependency "cindy", ">= 0.2.1"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "gibbon", ">= 2"
@@ -30,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "combustion"
   spec.add_development_dependency "rails"
   spec.add_development_dependency "sqlite3"
+
 end

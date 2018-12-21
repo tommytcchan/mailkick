@@ -11,7 +11,7 @@ require "mailkick/service/sendgrid"
 require "mailkick/version"
 
 module Mailkick
-  mattr_accessor :services, :user_method, :secret_token, :mount
+  mattr_accessor :services, :user_method, :secret_token, :mount, :sendy_url, :sendy_api_key, :sendy_list_id
   self.services = []
   self.user_method = ->(email) { User.where(email: email).first rescue nil }
   self.mount = true
@@ -40,6 +40,10 @@ module Mailkick
         o.list = options[:list]
         o.created_at = time
         o.updated_at = time
+      end
+
+      if self.sendy_api_key
+        Cindy.new(self.sendy_url, self.sendy_api_key).unsubscribe(self.sendy_list_id, options[:email])
       end
     end
     true
